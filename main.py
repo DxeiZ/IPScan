@@ -3,17 +3,28 @@
 import shutil
 from urllib import request
 import colorama
+import os
 import json
 import re
 
-print(chr(27) + "[2J")
+os.system("clear")
 
 colorama.init()
 
 
 def Header():
-    print(colorama.Fore.RED + "\033[1;3mシ-ド ＩＰＳｃａｎ　シ-ド\033[0m".center(shutil.get_terminal_size().columns))
-    print("\033[1;3mEratOS\033[0m".center(shutil.get_terminal_size().columns))
+    print(colorama.Fore.RED+"""
+\033[1;31m
+$$$$$$\ $$$$$$$\   $$$$$$\                               
+\_$$  _|$$  __$$\ $$  __$$\                              
+  $$ |  $$ |  $$ |$$ /  \__| $$$$$$$\ $$$$$$\  $$$$$$$\  
+  $$ |  $$$$$$$  |\$$$$$$\  $$  _____|\____$$\ $$  __$$\ 
+  $$ |  $$  ____/  \____$$\ $$ /      $$$$$$$ |$$ |  $$ |
+  $$ |  $$ |      $$\   $$ |$$ |     $$  __$$ |$$ |  $$ |
+$$$$$$\ $$ |      \$$$$$$  |\$$$$$$$\\$$$$$$$ |$$ |  $$ |
+\______|\__|       \______/  \_______|\_______|\__|  \__|
+                                    \033[1;39mDeveloper by Eratonos\033[1;31m
+""".center(shutil.get_terminal_size().columns))
 
 
 Header()
