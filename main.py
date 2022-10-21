@@ -20,7 +20,7 @@ Header()
 
 while True:
     print(colorama.Style.RESET_ALL)
-    print(colorama.Fore.GREEN + "[+] " + colorama.Fore.LIGHTRED_EX + "IP Adresini Daxil Edin ↓")
+    print(colorama.Fore.GREEN + "[+] " + colorama.Fore.LIGHTRED_EX + "İP Adresini Daxil Edin ↓")
     ip = input(colorama.Style.RESET_ALL+"> ")
 
     regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
@@ -33,9 +33,9 @@ while True:
         result = json.loads(response.read().decode("utf-8"))
 
         if len(result) == 5:
-            print(colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· IP · {colorama.Fore.LIGHTGREEN_EX+str(result['ip'])}\n"+
-                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Type · {colorama.Fore.LIGHTGREEN_EX+result['version']}\n"+
-                  + colorama.Fore.RED + f"\n\033[1;3mError: {result['reason']}\033[0m")
+            print(colorama.Fore.RED+f"\n\033[1;3mError: {str(result['reason'])}\033[0m\n"+
+                colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· IP · {colorama.Fore.LIGHTGREEN_EX+str(result['ip'])}\n"+
+                colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Type · {colorama.Fore.LIGHTGREEN_EX+str(result['version'])}")
 
         else:
             print(colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· IP · {colorama.Fore.LIGHTGREEN_EX+str(result['ip'])}\n"+
@@ -57,4 +57,4 @@ while True:
                   colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Location · {colorama.Fore.LIGHTGREEN_EX+'https://google.com/maps/place/'+str(result['latitude'])},{str(result['longitude'])} ({str(result['latitude'])},{str(result['longitude'])})")
 
     else:
-        print(colorama.Fore.GREEN + "[-] " + colorama.Fore.RED + "IP Adresini Yanlisdir!")
+        print(colorama.Fore.GREEN + "[-] " + colorama.Fore.RED + "İP adresi səhvdir!")
