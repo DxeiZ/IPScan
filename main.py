@@ -18,42 +18,43 @@ def Header():
 
 Header()
 
-print(colorama.Style.RESET_ALL)
-print(colorama.Fore.GREEN + "[+] " + colorama.Fore.LIGHTRED_EX + "IP Adresini Daxil Edin ↓")
-ip = input("> ")
+while True:
+    print(colorama.Style.RESET_ALL)
+    print(colorama.Fore.GREEN + "[+] " + colorama.Fore.LIGHTRED_EX + "IP Adresini Daxil Edin ↓")
+    ip = input(colorama.Style.RESET_ALL+"> ")
 
-regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
-p = re.compile(regex)
+    regex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
+    p = re.compile(regex)
 
-if (re.search(p, ip)):
-    url = 'https://ipapi.co/' + ip + '/json/'
-    req = request.Request(url)
-    response = request.urlopen(req)
-    result = json.loads(response.read().decode("utf-8"))
+    if (re.search(p, ip)):
+        url = 'https://ipapi.co/' + ip + '/json/'
+        req = request.Request(url)
+        response = request.urlopen(req)
+        result = json.loads(response.read().decode("utf-8"))
 
-    if len(result) == 5:
-        print(f"\nIP · {result['ip']}\n"
-              f"Type · {result['version']}\n"
-              + colorama.Fore.RED + f"\n\033[1;3mError: {result['reason']}\033[0m")
+        if len(result) == 5:
+            print(colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· IP · {colorama.Fore.LIGHTGREEN_EX+str(result['ip'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Type · {colorama.Fore.LIGHTGREEN_EX+result['version']}\n"+
+                  + colorama.Fore.RED + f"\n\033[1;3mError: {result['reason']}\033[0m")
+
+        else:
+            print(colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· IP · {colorama.Fore.LIGHTGREEN_EX+str(result['ip'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Network · {colorama.Fore.LIGHTGREEN_EX+str(result['network'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Type · {colorama.Fore.LIGHTGREEN_EX+str(result['version'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Country · {colorama.Fore.LIGHTGREEN_EX+str(result['country_name'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Country Code · {colorama.Fore.LIGHTGREEN_EX+str(result['country'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Country Phone · {colorama.Fore.LIGHTGREEN_EX+str(result['country_calling_code'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Country Tld · {colorama.Fore.LIGHTGREEN_EX+str(result['country_tld'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Region · {colorama.Fore.LIGHTGREEN_EX+str(result['region'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· City · {colorama.Fore.LIGHTGREEN_EX+str(result['city'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Asn · {colorama.Fore.LIGHTGREEN_EX+str(result['asn'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Org · {colorama.Fore.LIGHTGREEN_EX+str(result['org'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Timezone · {colorama.Fore.LIGHTGREEN_EX+str(result['timezone'])} ({colorama.Fore.LIGHTGREEN_EX+str(result['utc_offset'])})\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Currency ·  {colorama.Fore.LIGHTGREEN_EX+str(result['currency_name'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Country Population · {colorama.Fore.LIGHTGREEN_EX+str(result['country_population'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Languages · {colorama.Fore.LIGHTGREEN_EX+str(result['languages'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Postal · {colorama.Fore.LIGHTGREEN_EX+str(result['postal'])}\n"+
+                  colorama.Fore.LIGHTYELLOW_EX+f"\033[1;3m· Location · {colorama.Fore.LIGHTGREEN_EX+'https://google.com/maps/place/'+str(result['latitude'])},{str(result['longitude'])} ({str(result['latitude'])},{str(result['longitude'])})")
 
     else:
-        print(f"\nIP · {result['ip']}\n"
-              f"Network · {result['network']}\n"
-              f"Type · {result['version']}\n"
-              f"Country · {result['country_name']}\n"
-              f"Country Code · {result['country']}\n"
-              f"Country Phone · {result['country_calling_code']}\n"
-              f"Country Tld · {result['country_tld']}\n"
-              f"Region · {result['region']}\n"
-              f"City · {result['city']}\n"
-              f"Asn · {result['asn']}\n"
-              f"Org · {result['org']}\n"
-              f"Timezone · {result['timezone']} ({result['utc_offset']})\n"
-              f"Currency ·  {result['currency_name']}\n"
-              f"Country Population · {result['country_population']}\n"
-              f"Languages · {result['languages']}\n"
-              f"Postal · {result['postal']}\n"
-              f"Location · https://google.com/maps/place/{result['latitude']},{result['longitude']} ({result['latitude']},{result['longitude']})")
-
-else:
-    print(colorama.Fore.GREEN + "[-] " + colorama.Fore.RED + "IP Adresini Yanlisdir!")
+        print(colorama.Fore.GREEN + "[-] " + colorama.Fore.RED + "IP Adresini Yanlisdir!")
