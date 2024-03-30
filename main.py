@@ -39,7 +39,7 @@ def human_format(num):
     while abs(num) >= 1000:
         magnitude += 1
         num /= 1000.0
-    return '%.2f%s' % (num, ['', ' Bin', ' Milyon', ' Milyar', ' Trilyon', 'Katrilyon'][magnitude])
+    return '%.2f%s' % (num, ['', ' Bin', ' Milyon', ' Milyar', ' Trilyon', ' Katrilyon'][magnitude])
 
 def exit_code(sig, frame):
   print("\n"+colorama.Fore.LIGHTRED_EX + "Uygulama Kapatılıyor...")
